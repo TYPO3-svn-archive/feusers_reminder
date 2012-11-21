@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+    <meta type="array">
+		<type>module</type>
+		<description>Language labels for scheduler</description>
+    </meta>
+    <data type="array">
+		<languageKey index="default" type="array">
+			<label index="scheduler_label.task_title_reminder">Reminder to complete registration</label>
+			<label index="scheduler_label.task_description_reminder">Sending an automatic e-mail to users who have not yet completed their registration</label>
+
+			<label index="scheduler_label.task_maxtimes2remind">Max times would a user remind?</label>
+			<label index="scheduler_label.task_maxtimeafterregistration">Time after registration? (seconds)</label>
+			<label index="scheduler_label.task_maxtimeafterremind">Time between reminds? (seconds)</label>
+			<label index="scheduler_label.task_senderemail">Sender email</label>
+			<label index="scheduler_label.task_emailsubject">Email subject</label>
+			<label index="scheduler_label.task_group2remind">Which group would be remind?</label>
+			<label index="scheduler_label.select_group2remind">Select a feuser group</label>
+			<label index="scheduler_label.task_emailbody">Email content</label>
+
+			<label index="scheduler_label.warning_group2remind">It could not be determined FE User Group</label>
+
+			<label index="scheduler_error.invalid_group2remind">Fe-user group is incorrect.</label>
+			<label index="scheduler_error.invalid_maxtimes2remind">The number of reminds must be at least 1.</label>
+			<label index="scheduler_error.invalid_maxtimeafterremind">No time between memories specify. Or you can reduce the number of memories to 1</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="scheduler_label.task_title_reminder">Erinnerung Registrierung abzuschließen</label>
+			<label index="scheduler_label.task_description_reminder">Versand einer automatischen E-Mail an Benutzer, welche ihre Registrierung noch nicht vollständig abgeschlossen haben</label>
+
+			<label index="scheduler_label.task_maxtimes2remind">Wie of soll ein Benutzer erinnert werden?</label>
+			<label index="scheduler_label.task_maxtimeafterregistration">Zeit nach der Registrierung? (Sekunden)</label>
+			<label index="scheduler_label.task_maxtimeafterremind">Zeit zwischen Erinnerungen? (Sekunden)</label>
+			<label index="scheduler_label.task_senderemail">Absender E-Mail Adresse</label>
+			<label index="scheduler_label.task_emailsubject">E-Mail Betreff</label>
+			<label index="scheduler_label.task_group2remind">Welche Gruppe soll erinnert werden?</label>
+			<label index="scheduler_label.select_group2remind">Wähle eine Gruppe</label>
+			<label index="scheduler_label.task_emailbody">E-Mail Inhalt</label>
+
+			<label index="scheduler_label.warning_group2remind">Es konnte keine FE-Usergruppe ermittelt werden</label>
+
+			<label index="scheduler_error.invalid_group2remind">Fe-Usergruppe ist nicht korrekt.</label>
+			<label index="scheduler_error.invalid_maxtimes2remind">Die Anzahl der Erinnerungen muss mindestens 1 sein.</label>
+			<label index="scheduler_error.invalid_maxtimeafterremind">Keine Zeit zwischen den Erinnerungen angeben. Oder reduzieren Sie die Anzahl der Erinnerungen auf 1.</label>
+		</languageKey>
+    </data>
+</T3locallang>
