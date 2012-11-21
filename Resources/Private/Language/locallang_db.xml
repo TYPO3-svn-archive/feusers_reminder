@@ -6,6 +6,12 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
+			<label index="tx_feusersreminder.maxreminds">Current reminds</label>
+			<label index="tx_feusersreminder.lastremind">Last remind</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="tx_feusersreminder.maxreminds">Aktuelle Anzahl Erinnerungen</label>
+			<label index="tx_feusersreminder.lastremind">Letzte Erinnerung</label>
 		</languageKey>
 	</data>
 </T3locallang>

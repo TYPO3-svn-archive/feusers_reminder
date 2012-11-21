@@ -11,8 +11,7 @@ $tempColumns = array (
         'config' => array (
             'type' => 'input',
  			'size' => '10',
-			'readonly' => 1,
- 			'eval' => 'num',
+			'readOnly' => 1,
         )
     ),
 	'feusersreminder_last_remind' => array(
@@ -20,7 +19,7 @@ $tempColumns = array (
 		'config' => array(
 			'type' => 'input',
 			'size' => '10',
-			'readonly' => 1,
+			'readOnly' => 1,
 			'eval' => 'date',
 		)
 	)
@@ -28,7 +27,8 @@ $tempColumns = array (
 
 t3lib_div::loadTCA('fe_users');
 t3lib_extMgm::addTCAcolumns('fe_users', $tempColumns, 1);
-t3lib_extMgm::addToAllTCAtypes('fe_users', 'feusers_reminder;;;;1-1-1');
+t3lib_extMgm::addToAllTCAtypes('fe_users', 'feusersreminder_max_reminds;;;;1-1-1');
+t3lib_extMgm::addToAllTCAtypes('fe_users', 'feusersreminder_last_remind;;;;1-1-1');
 
 
 $extensionName = t3lib_div::underscoredToUpperCamelCase($_EXTKEY);
