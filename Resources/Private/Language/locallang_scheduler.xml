@@ -18,6 +18,8 @@
 			<label index="scheduler_label.select_group2remind">Select a feuser group</label>
 			<label index="scheduler_label.task_emailbody">Email content</label>
 
+			<label index="scheduler_warning_email_send.Header">Failed to send email</label>
+			<label index="scheduler_warning_email_send">Memory of %1$s %2$s (%3$s) could not be sent.</label>
 			<label index="scheduler_label.warning_group2remind">It could not be determined FE User Group</label>
 
 			<label index="scheduler_error.invalid_group2remind">Fe-user group is incorrect.</label>
@@ -37,6 +39,8 @@
 			<label index="scheduler_label.select_group2remind">Wähle eine Gruppe</label>
 			<label index="scheduler_label.task_emailbody">E-Mail Inhalt</label>
 
+			<label index="scheduler_warning_email_send.Header">E-Mail Versand fehlgeschlagen</label>
+			<label index="scheduler_warning_email_send">Erinnerung an %1$s %2$s (%3$s) konnte nicht verschickt werden.</label>
 			<label index="scheduler_label.warning_group2remind">Es konnte keine FE-Usergruppe ermittelt werden</label>
 
 			<label index="scheduler_error.invalid_group2remind">Fe-Usergruppe ist nicht korrekt.</label>

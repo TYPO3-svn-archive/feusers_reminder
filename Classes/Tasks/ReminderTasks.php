@@ -88,11 +88,132 @@ class Tx_FeusersReminder_Tasks_ReminderTasks extends tx_scheduler_Task {
 	 */
 	protected $locallang;
 
+	/**
+	 *
+	 * @var t3lib_mail_Message
+	 */
+	protected $mailObj;
+
+	/**
+	 *
+	 * @var Tx_FeusersReminder_Domain_Repository_FrontendUserRepository
+	 */
+	protected $frontendUserRepository;
+
 
 
 	public function execute() {
-		$this->locallang = $this->includeLocalLang();
+
+		$this->locallang			  = $this->includeLocalLang();
+		$this->mailObj				  = t3lib_div::makeInstance('t3lib_mail_Message');
+		$this->frontendUserRepository = t3lib_div::makeInstance('Tx_FeusersReminder_Domain_Repository_FrontendUserRepository');
+
+		// load all users which are in usergroup
+		$query = $this->frontendUserRepository->createQuery();
+		$query->getQuerySettings()
+				->setRespectStoragePage(FALSE)
+				->setRespectEnableFields(TRUE);
+		$query->matching(
+			$query->logicalAnd(
+				$query->contains('usergroup', intval($this->getGroup2Remind())),
+				$query->lessThan('crdate', time() - $this->getMaxTimeAfterRegistration()),
+				$query->lessThan('feusersreminder_max_reminds', intval($this->getMaxTimes2Remind())),
+				$query->lessThan('feusersreminder_last_remind', time() - $this->getMaxTimeAfterRemind())
+			)
+		);
+		$allUsers = $query->execute();
+
+		if ($allUsers->count() > 0) {
+			foreach ($allUsers AS $user) {
+				#$this->remindUsers($user);
+				$this->saveRemindInformation($user);
+			}
+		}
+
+		return true;
 	}
+
+	/**
+	 * Send emails to user witch are not filled the diary. Bevore an email is send
+	 * would be check the email adress. All user with not valid email address would
+	 * be send to an administrator.
+	 *
+	 * @param Tx_Extbase_Domain_Model_FrontendUser $userObject
+	 *
+	 * return void
+	 */
+	protected function remindUsers(Tx_Extbase_Domain_Model_FrontendUser $userObject) {
+
+		if (! t3lib_div::validEmail($userObject->getEmail())) {
+			return;
+		}
+
+		$userMethods = get_class_methods($userObject);
+
+		foreach ($userMethods AS $index => $method) {
+			if (0 !== ($pos = strpos($method, 'get', 0))) {
+				unset($userMethods[$index]);
+				continue;
+			}
+
+			// remove storage object
+			if (is_object($userObject->$method())) {
+				unset($userMethods[$index]);
+				continue;
+			}
+
+			$userKey2Method[$index]		= '{' . lcfirst(str_replace('get', '', $method)) . '}';
+			$userValue2Method[$index]	= $userObject->$method();
+		}
+		unset($userMethods);
+
+		// replace marker {marker} with content
+		$bodyIntern	= str_replace($userKey2Method, $userValue2Method, $this->getEmailBody());
+
+		// replace special marker {marker}. This marker are storage objects
+		$bodyIntern = str_replace('{lastLogin}', $userObject->getLastlogin()->format('d.m.Y'), $bodyIntern);
+
+		$this->mailObj
+				->setTo(array($userObject->getEmail() => $userObject->getFirstName() . ' ' .$userObject->getLastName()))
+				->setFrom(array($this->getSenderEmail() => $this->getSenderEmail()))
+				->setSubject($this->getEmailSubject())
+				->setBody($bodyIntern, 'text/plain');
+		$this->mailObj->send();
+
+		if (! $this->mailObj->isSent()) {
+			$flashMessage = t3lib_div::makeInstance(
+					't3lib_FlashMessage',
+					sprintf($GLOBALS['LANG']->getLLL('scheduler_warning_email_send', $this->locallang),
+							$userObject->getFirstName(), $userObject->getLastName(), $userObject->getEmail()),
+					$GLOBALS['LANG']->getLLL('scheduler_warning_email_send.Header', $this->locallang), t3lib_FlashMessage::WARNING);
+			t3lib_FlashMessageQueue::addMessage($flashMessage);
+		}
+	}
+
+
+	/**
+	 * Updae feuser data with information about last remind and
+	 * number of reminds
+	 *
+	 * @param Tx_FeusersReminder_Domain_Model_FrontendUser $userObject
+	 *
+	 * return void
+	 */
+	protected function saveRemindInformation(Tx_FeusersReminder_Domain_Model_FrontendUser $userObject) {
+		#$userObject->setFeusersreminderLastRemind( new DateTime() );
+		#$userObject->setFeusersreminderMaxReminds(($userObject->getFeusersreminderMaxReminds() + 1) );
+		#$this->frontendUserRepository->update($userObject);
+		//$table, $where, $fields_values, $no_quote_fields = FALSE
+		$update = array(
+			'feusersreminder_last_remind' => time(),
+			'feusersreminder_max_reminds' => ($userObject->getFeusersreminderMaxReminds() + 1));
+		$GLOBALS['TYPO3_DB']->exec_UPDATEquery('fe_users', 'uid=' . $userObject->getUid(), $update);
+	}
+
+/*
+ * Tx_FeusersReminder_Domain_Model_Frontend
+ * UserTx_Extbase_Domain_Model_FrontendUser
+ */
 
 	/**
 	 * Load the locallang file
@@ -108,7 +229,6 @@ class Tx_FeusersReminder_Tasks_ReminderTasks extends tx_scheduler_Task {
 
 		return $LOCAL_LANG;
 	}
-
 
 
 	/**

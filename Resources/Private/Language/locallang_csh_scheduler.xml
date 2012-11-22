@@ -7,24 +7,28 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="schedulertask_lastdays.description">Enter the number of days that will be looked at retrospectively.</label>
+			<label index="schedulertask_maxtimes2remind.description">Here you can define how often a user will be reminded to complete the registration. Is the maximum value is reached, the user will not receive any further memories. Automatic deletion of the user is not provided.</label>
+			<label index="schedulertask_maxtimeafterregistration.description">You can specify how much time (in seconds) a user after registration to the completion of the registration is to be remembered.</label>
+			<label index="schedulertask_maxtimeafterremind.description">You can specify how much time (in seconds) must be between the memories. Only after this time, the user will remember at the end of his registration if he is still in this group.</label>
+			<label index="schedulertask_group2remind.description">Only users can receive a reminder e-mail, which are located in a defined group of users, e.g. "new registrations". Be sure to provide the user group in which are all newly registered users.</label>
+
 			<label index="schedulertask_senderemail.description">This e-mail address is used as the sender</label>
 			<label index="schedulertask_emailsubject.description">Subject of reminder email</label>
-			<label index="schedulertask_remindstudy.description">select a study group witch would be remind to fill out the diary</label>
-
 			<label index="schedulertask_emailbody.description">With this field you can define the content of the email. Additionally, wildcards can be used, which are automatically replaced by appropriate user data.</label>
-			<label index="schedulertask_emailbody.details">The placeholder for user data always begin and end with "{" "}". In between, the name of the database field to be entered, eg "first_name" for the given name. Additionally, there is the placeholder {date}, which is the date of the last day wearing (the day on which the user has not made a diary entry).</label>
-			<label index="schedulertask_emailbody.syntax">{db_field_name}</label>
+			<label index="schedulertask_emailbody.details">The placeholder for user data always begin and end with "{" "}". In between, the name of the database field to be entered, eg "firstName" for the given name.</label>
+			<label index="schedulertask_emailbody.syntax">{propertyName}</label>
 		</languageKey>
 		<languageKey index="de" type="array">
-			<label index="schedulertask_lastdays.description">Tragen Sie die Anzahl an Tagen ein, die Rückwirkend geschaut werden soll.</label>
+			<label index="schedulertask_maxtimes2remind.description">Definieren Sie hier, wie oft ein Benutzer an den Abschluss der Registrierung erinnert werden soll. Ist der maximale Wert erreicht, wird der Benutzer keine weiteren Erinnerungen erhalten. Ein automatisches Löschen des Benutzers ist nicht vorgesehen.</label>
+			<label index="schedulertask_maxtimeafterregistration.description">Geben Sie an wie viel Zeit (in Sekunden) ein Benutzer nach der Registrierung an den Abschluss der Registrierung erinnert werden soll.</label>
+			<label index="schedulertask_maxtimeafterremind.description">Geben Sie an wie viel Zeit (in Sekunden) zwischen den Erinnerungen liegen muss. Erst nach dieser Zeit, wird der Benutzer nochmals an den Abschluss seiner Registrierung erinnert, sofern er sich noch in dieser Gruppe befindet.</label>
+			<label index="schedulertask_group2remind.description">Es können nur Benutzer eine Erinnerungs E-Mail erhalten, die sich in einer definierten Benutzergruppe befinden, z.B. "Neuregistrierungen". Geben Sie daher die Benutzergruppe an, in der sich alle neu registrierten Benutzer befinden.</label>
+
 			<label index="schedulertask_senderemail.description">Diese E-Mail Adresse wird als Absender benutzt</label>
 			<label index="schedulertask_emailsubject.description">Betreff der Erinnerungs E-Mail</label>
-			<label index="schedulertask_remindstudy.description">Wählen Sie hier die Studiengruppe aus an welche eine Erinnerung geschickt werden soll.</label>
-
 			<label index="schedulertask_emailbody.description">Mit diesem Feld können Sie den Inhalt der E-Mail bestimmen. Zusätzlich können Platzhalter verwendet werden, welche automatisch durch entsprechende Benutzerdaten ersetzt werden.</label>
-			<label index="schedulertask_emailbody.details">Die Platzhalter für Benutzerdaten beginnen und enden immer mit "{" "}". Dazwischen muss der Name des Datenbankfeldes eingetragen werden, z.B. "first_name" für den Vornamen. Zusätzlich gibt es noch den Platzhalter {date}, welcher das Datum des letzten Tages eingeträgt (der Tag an dem der Benutzer keinen Tagebucheintrag gemacht hat).</label>
-			<label index="schedulertask_emailbody.syntax">{db_feld_name}</label>
+			<label index="schedulertask_emailbody.details">Die Platzhalter für Benutzerdaten beginnen und enden immer mit "{" "}". Dazwischen muss der Eigenschaftsname eingetragen werden, z.B. "firstName" für den Vornamen.</label>
+			<label index="schedulertask_emailbody.syntax">{eigenschaftsName}</label>
 		</languageKey>
 	</data>
 </T3locallang>
