@@ -125,7 +125,7 @@ class Tx_FeusersReminder_Tasks_ReminderTasks extends tx_scheduler_Task {
 
 		if ($allUsers->count() > 0) {
 			foreach ($allUsers AS $user) {
-				#$this->remindUsers($user);
+				$this->remindUsers($user);
 				$this->saveRemindInformation($user);
 			}
 		}
@@ -200,20 +200,12 @@ class Tx_FeusersReminder_Tasks_ReminderTasks extends tx_scheduler_Task {
 	 * return void
 	 */
 	protected function saveRemindInformation(Tx_FeusersReminder_Domain_Model_FrontendUser $userObject) {
-		#$userObject->setFeusersreminderLastRemind( new DateTime() );
-		#$userObject->setFeusersreminderMaxReminds(($userObject->getFeusersreminderMaxReminds() + 1) );
-		#$this->frontendUserRepository->update($userObject);
-		//$table, $where, $fields_values, $no_quote_fields = FALSE
 		$update = array(
 			'feusersreminder_last_remind' => time(),
 			'feusersreminder_max_reminds' => ($userObject->getFeusersreminderMaxReminds() + 1));
 		$GLOBALS['TYPO3_DB']->exec_UPDATEquery('fe_users', 'uid=' . $userObject->getUid(), $update);
 	}
 
-/*
- * Tx_FeusersReminder_Domain_Model_Frontend
- * UserTx_Extbase_Domain_Model_FrontendUser
- */
 
 	/**
 	 * Load the locallang file
