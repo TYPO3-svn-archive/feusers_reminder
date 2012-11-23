@@ -52,15 +52,13 @@ if (TYPO3_MODE == 'BE') {
 		// load csh file
 		t3lib_extMgm::addLLrefForTCAdescr('tx_feusersreminder_scheduler', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_scheduler.xml');
 
-		if (t3lib_div::int_from_ver(TYPO3_version) < 4007000) {
-			// register scheduler task to remind users
-			$TYPO3_CONF_VARS['SC_OPTIONS']['scheduler']['tasks']['Tx_FeusersReminder_Tasks_ReminderTasks'] = array (
-				'extension'			=> $_EXTKEY,
-				'title'				=> 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_scheduler.xml:scheduler_label.task_title_reminder',
-				'description'		=> 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_scheduler.xml:scheduler_label.task_description_reminder',
-				'additionalFields'	=> 'Tx_' . $extensionName . '_Tasks_SchedulerAddFields4Reminder'
-			);
-		}
+		// register scheduler task to remind users
+		$TYPO3_CONF_VARS['SC_OPTIONS']['scheduler']['tasks']['Tx_FeusersReminder_Tasks_ReminderTasks'] = array (
+			'extension'			=> $_EXTKEY,
+			'title'				=> 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_scheduler.xml:scheduler_label.task_title_reminder',
+			'description'		=> 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_scheduler.xml:scheduler_label.task_description_reminder',
+			'additionalFields'	=> 'Tx_' . $extensionName . '_Tasks_SchedulerAddFields4Reminder'
+		);
 	}
 }
 
