@@ -260,7 +260,7 @@ class Tx_FeusersReminder_Tasks_SchedulerAddFields4Reminder implements tx_schedul
 		$task->setGroup2Remind(trim($submittedData['group2Remind']));
 		$task->setMaxTimes2Remind(intval($submittedData['maxTimes2Remind']));
 		$task->setMaxTimeAfterRegistration($submittedData['maxTimeAfterRegistration']);
-		$task->setMaxTimeAfterRemind($submittedData['xaxTimeAfterRemind']);
+		$task->setMaxTimeAfterRemind($submittedData['maxTimeAfterRemind']);
 	}
 
 	/**
